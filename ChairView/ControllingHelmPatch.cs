@@ -33,7 +33,6 @@ namespace ChairView
             if (potentialHelm.Count == 0)
                 VoidManager.Events.Instance.LateUpdate += CheckHelm;
             potentialHelm.Add(__instance);
-            BepinPlugin.Log.LogInfo($"Debug instance");
         }
 
         private static void CheckHelm(object sender, EventArgs e)
@@ -44,13 +43,11 @@ namespace ChairView
                 LocalPlayer player = (LocalPlayer)localPlayerField.GetValue(helm);
                 if (LocalPlayer.Instance == player)
                 {
-                    BepinPlugin.Log.LogInfo($"Debug check true");
                     controllingHelm = helm;
                     potentialHelm.RemoveAt(i);
                 }
                 else
                 {
-                    BepinPlugin.Log.LogInfo($"Debug check false");
                     potentialHelm.RemoveAt(i);
                 }
             }

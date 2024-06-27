@@ -6,8 +6,6 @@ namespace ChairView
     {
         static VoidManagerPlugin()
         {
-            VoidManager.Events.Instance.JoinedRoom += (sender, e) => BepinPlugin.Log.LogInfo("Debug JoinedRoom");
-            VoidManager.Events.Instance.HostStartSession += (sender, e) => BepinPlugin.Log.LogInfo("Debug StartedRoom");
             VoidManager.Events.Instance.JoinedRoom += OnChairSeatedChangedPatch.Reset;
             VoidManager.Events.Instance.LeftRoom += OnChairSeatedChangedPatch.Reset;
         }
