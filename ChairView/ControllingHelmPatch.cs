@@ -104,7 +104,7 @@ namespace ChairView
 
         private static void ShipControlEvent(bool b)
         {
-            if (OnChairSeatedChangedPatch.isHelm)
+            if (ChairBasePatch.isHelm)
                 ViewEventBus.Instance.OnShipControlToggle.Publish((CG.Space.SpaceObjects.ISpaceCraft)helmParentSpacecraftField.GetValue(controllingHelm), b);
         }
 
@@ -112,7 +112,7 @@ namespace ChairView
         [HarmonyPatch("EnableInput")]
         static bool EnableInput()
         {
-            if (OnChairSeatedChangedPatch.isHelm) return true;
+            if (ChairBasePatch.isHelm) return true;
 
             InputActionReferences inputs = ServiceBase<InputService>.Instance.InputActionReferences;
             Helm helm = (Helm)helmField.GetValue(controllingHelm);
@@ -128,7 +128,7 @@ namespace ChairView
         [HarmonyPatch("DisableInput")]
         static bool DisableInput()
         {
-            if (OnChairSeatedChangedPatch.isHelm) return true;
+            if (ChairBasePatch.isHelm) return true;
 
             InputActionReferences inputs = ServiceBase<InputService>.Instance.InputActionReferences;
             Helm helm = (Helm)helmField.GetValue(controllingHelm);

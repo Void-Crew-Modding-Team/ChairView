@@ -6,8 +6,8 @@ namespace ChairView
     {
         static VoidManagerPlugin()
         {
-            VoidManager.Events.Instance.JoinedRoom += OnChairSeatedChangedPatch.Reset;
-            VoidManager.Events.Instance.LeftRoom += OnChairSeatedChangedPatch.Reset;
+            VoidManager.Events.Instance.JoinedRoom += ChairBasePatch.Reset;
+            VoidManager.Events.Instance.LeftRoom += ChairBasePatch.Reset;
         }
 
         public override MultiplayerType MPType => MultiplayerType.Client;
