@@ -20,8 +20,9 @@ namespace ChairView
         [HarmonyPatch("TakeChairLocal")]
         static void TakeChairLocal(ChairBase __instance)
         {
-            if (__instance.photonView.Owner != PhotonNetwork.LocalPlayer || __instance is TurretChair || __instance is not TakeoverChair ||
-                __instance == ClientGame.Current.PlayerShip.gameObject.GetComponentInChildren<Helm>().Chair) return;
+            ChairBase pilotsSeat = ClientGame.Current?.PlayerShip?.gameObject?.GetComponentInChildren<Helm>()?.Chair;
+            if (pilotsSeat == null || __instance.photonView.Owner != PhotonNetwork.LocalPlayer || __instance is TurretChair ||
+                __instance is not TakeoverChair || __instance == pilotsSeat) return;
 
             playerChair = __instance;
             ControllingHelmPatch.controllingHelm.AbilityActivator = ClientGame.Current.PlayerShip.gameObject.GetComponentInChildren<Helm>();
